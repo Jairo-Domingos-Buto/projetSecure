@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('contaContabilistica', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo',20);
-            $table->string('descricao',255);
-            $table->enum('tipo',['A','T','S']);
-            $table->int('pai_id');//INT (FK ->ContaContabilistica.id)
-            $table->string('classe',10);
-            $table->string('moeda',3);//"AKZ", "USD"
+            $table->string('codigo', 20);
+            $table->string('descricao', 255);
+            $table->enum('tipo', ['A', 'T', 'S']);
+            $table->integer('pai_id'); // Corrected method
+            $table->string('classe', 10);
+            $table->string('moeda', 3); // "AKZ", "USD"
             $table->boolean('ativa');
             $table->timestamps();
         });
-
     }
 
     /**
