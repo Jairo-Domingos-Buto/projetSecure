@@ -1,13 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/loginAdmin', function () {
-    return view('loginAdmin');
-});
-Route::get('/dashboard', function () {
-    return view('Admin.dashboard');
-})->name('dashboard');
+Route::get('/', [AdminController::class, 'welcome']);
+Route::get('/loginAdmin', [AdminController::class, 'loginAdmin']);
+Route::get('/dashboard', [AdminController::class, 'dashboard']);

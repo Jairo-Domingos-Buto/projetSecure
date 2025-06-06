@@ -25,46 +25,67 @@
             <nav class="sidebar-nav">
                 <div class="nav-section">
                     <div class="nav-title">Principal</div>
-                    <a href="#" class="nav-link active">
+                    <a href="#" class="nav-link active" data-section="dashboard">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Dashboard</span>
-                        <span class="badge">3</span>
                     </a>
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-users"></i>
-                        <span>Usuários</span>
+                    <a href="#" class="nav-link" data-section="clientes">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Clientes Segurados</span>
                     </a>
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-chart-pie"></i>
-                        <span>Análises</span>
+                    <a href="#" class="nav-link" data-section="apolices">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Apólices</span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="contratos">
+                        <i class="fas fa-file-signature"></i>
+                        <span>Contratos</span>
                     </a>
                 </div>
 
                 <div class="nav-section">
-                    <div class="nav-title">Conteúdo</div>
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-file-alt"></i>
-                        <span>Relatórios</span>
-                        <span class="badge new">Novo</span>
+                    <div class="nav-title">Operações</div>
+                    <a href="#" class="nav-link" data-section="ocorrencias">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Cadastro de Ocorrências</span>
                     </a>
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Agenda</span>
+                    <a href="#" class="nav-link" data-section="faturas">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Geração de Faturas</span>
                     </a>
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-envelope"></i>
-                        <span>Mensagens</span>
-                        <span class="badge">12</span>
+                    <a href="#" class="nav-link" data-section="pagamentos">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>Pagamentos</span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="sinistros">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Sinistros</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-title">Relatórios</div>
+                    <a href="#" class="nav-link" data-section="relatorios-financeiros">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Relatórios Financeiros</span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="relatorios-ocorrencias">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Relatórios de Ocorrências</span>
                     </a>
                 </div>
 
                 <div class="nav-section">
                     <div class="nav-title">Configurações</div>
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" data-section="configuracoes">
                         <i class="fas fa-cog"></i>
-                        <span>Configurações</span>
+                        <span>Configurações do Sistema</span>
                     </a>
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" data-section="perfil">
+                        <i class="fas fa-user-cog"></i>
+                        <span>Perfil do Usuário</span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="ajuda">
                         <i class="fas fa-question-circle"></i>
                         <span>Ajuda</span>
                     </a>
@@ -75,7 +96,7 @@
                 <div class="user-profile">
                     <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="user-avatar">
                     <div class="user-info">
-                        <div class="user-name">Maria Silva</div>
+                        <div class="user-name">Inocencio Bumba</div>
                         <div class="user-role">Administrador</div>
                     </div>
                     <button class="user-menu">
@@ -85,6 +106,7 @@
                 <a href="#" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Sair</span>
+                   
                 </a>
             </div>
         </aside>
@@ -259,6 +281,7 @@
                 </div>
             </div>
         </main>
+        
     </div>
 </body>
 </html>

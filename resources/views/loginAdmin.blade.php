@@ -37,7 +37,7 @@
                         <input type="password" id="password" placeholder="••••••••" required>
                     </div>
 
-                    <button type="submit" class="login-button"><a href="{{ route('dashboard') }}">Entrar"></a></button>
+                    <button type="submit" class="login-button" ><a href="dashboard">Entrar</button>
                 </form>
 
                 <div class="test-credentials">
