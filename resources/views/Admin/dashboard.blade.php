@@ -96,18 +96,20 @@
                 <div class="user-profile">
                     <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="user-avatar">
                     <div class="user-info">
-                        <div class="user-name">Inocencio Bumba</div>
-                        <div class="user-role">Administrador</div>
+                        <div class="user-name">{{auth()->user()->name}}</div>
+                        <div class="user-role">{{auth()->user()->role}}</div>
                     </div>
                     <button class="user-menu">
                         <i class="fas fa-ellipsis-v"></i>
                     </button>
                 </div>
-                <a href="#" class="logout-btn">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Sair</span>
-                   
-                </a>
+                <form action="/logout" method="POST">
+                    @csrf
+                    <button type="submit" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </button>
+                </form>
             </div>
         </aside>
 
@@ -281,7 +283,7 @@
                 </div>
             </div>
         </main>
-        
+
     </div>
 </body>
 </html>

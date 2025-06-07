@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto Seguro - Login</title>
-    <link rel="stylesheet" href="{{ asset('../css/loginAdmin.css') }}">
+    <link rel="stylesheet" href="{{ asset('../css/login.css') }}">
 </head>
 <body>
     <div class="toast-viewport">
-        <ol class="toast-container"></ol>
+        <ol class="toast-container">
+            @if ($errors->any())
+            <div>
+                <strong>{{ $errors->first() }}</strong>
+            </div>
+        @endif
+        </ol>
     </div>
 
     <div class="login-container">
@@ -26,25 +32,23 @@
             </div>
 
             <div class="card-content">
-                <form class="login-form">
+                <form class="login-form" method="POST" action="/login">
+                    @csrf
+
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="admin@sistema.com" required>
+                        <input type="email" name="email" id="email" placeholder="admin@sistema.com" required >
                     </div>
 
                     <div class="form-group">
                         <label for="password">Senha</label>
-                        <input type="password" id="password" placeholder="••••••••" required>
+                        <input type="password" name="password" id="password" placeholder="••••••••" required>
                     </div>
 
+                    <p><a href="#" class="forgot-password">Esqueceu sua senha?"></a></p>
                     <button type="submit" class="login-button" ><a href="dashboard">Entrar</button>
                 </form>
 
-                <div class="test-credentials">
-                    <p>Credenciais de teste:</p>
-                    <p><strong>Email:</strong> admin@sistema.com</p>
-                    <p><strong>Senha:</strong> admin123</p>
-                </div>
             </div>
         </div>
     </div>

@@ -30,7 +30,7 @@
 </head>
 <body>
     <h1>Layout em Desenvolvimento</h1>
-    <a href="loginAdmin">Logar como Admin</a>
+    <a href="login">Logar como Admin</a>
 
 </body>
 </html>
