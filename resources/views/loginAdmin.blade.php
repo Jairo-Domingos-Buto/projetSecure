@@ -37,7 +37,7 @@
                         <input type="password" id="password" placeholder="••••••••" required>
                     </div>
 
-                    <button type="submit" class="login-button" ><a href="dashboard">Entrar</button>
+                    <button type="submit" class="login-button" ><a href="dashboard">Entrar</a></button>
                 </form>
 
                 <div class="test-credentials">

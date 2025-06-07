@@ -16,9 +16,9 @@ class AdminController extends Controller
         return view('loginAdmin');
     }
 
-  public function dashboard()
-    {
-       return view('admin.dashboard');
-
-    }
+public function dashboard()
+{
+    // Renderiza a view dashboard e inclui a view conteudo como filha
+    return view('Admin.dashboard');
+}
 }
