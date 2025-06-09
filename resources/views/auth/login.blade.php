@@ -46,7 +46,8 @@
                     </div>
 
                     <p><a href="#" class="forgot-password">Esqueceu sua senha?"></a></p>
-                    <button type="submit" class="login-button" ><a href="dashboard">Entrar</button>
+
+                    <button type="submit" class="login-button" >Entrar</button>
                 </form>
 
             </div>
