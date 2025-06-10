@@ -30,7 +30,7 @@ class AuthController extends Controller
                 return back()->withErrors(['email' => 'Apenas administradores podem acessar.']);
             }
 
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/home');
 
         }
 
