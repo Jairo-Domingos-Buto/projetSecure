@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('../css/dashboard.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    
+
+
 </head>
 
 <body>
@@ -34,7 +34,11 @@
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
-                    <a href="#" class="nav-link" data-section="clientes">
+                    <a href="clientes" class="nav-link" >
+                        <i class="fas fa-users"></i>
+                        <span>Clientes</span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="planosContas">
                         <i class="fas fa-user-shield"></i>
                         <span>Plano de Contas</span>
                     </a>
@@ -141,14 +145,14 @@
             </header>
 
         <div class="content-wrapper">
-            @yield('content') 
+            @yield('content')
         </div>
         </main>
 
     </div>
 
-   
-    <script src="{{ asset('../js/main.js') }}"></script>
+
+   {{--  <script src="{{ asset('../js/main.js') }}"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
 
