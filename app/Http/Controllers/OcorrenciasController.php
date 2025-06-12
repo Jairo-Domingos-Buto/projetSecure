@@ -10,13 +10,11 @@ class OcorrenciasController extends Controller
     // Exibe a lista de ocorrências
 public function index(Request $request)
 {
-    $ocorrencias = Ocorrencia::all();
+       {
+        $ocorrencias = Ocorrencia::all();
 
-    if ($request->ajax()) {
-        return response()->json($ocorrencias);
+        return view('ocorrencias', compact('ocorrencias'));
     }
-
-    return view('home', compact('ocorrencias'));
 }
 
 

@@ -50,9 +50,9 @@
 
                 <div class="nav-section">
                     <div class="nav-title">Operações</div>
-                    <a href="{{ route('ocorrencias.index') }}" class="nav-link" data-section="ocorrencias" id="ocorrencias-link">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <span>Cadastro de Ocorrências</span>
+                     <a href="ocorrencias" class="nav-link" >
+                        <i class="fas fa-users"></i>
+                        <span>Cadastro de Ocorrencias</span>
                     </a>
                     <a href="#" class="nav-link" data-section="faturas">
                         <i class="fas fa-file-invoice-dollar"></i>

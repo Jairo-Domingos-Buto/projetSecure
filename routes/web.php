@@ -12,4 +12,4 @@ Route::get('/home', function () {
     return view('home');
 })->middleware('auth');
 
-Route::Resource('ocorrencias', OcorrenciasController::class);
+Route::get('/ocorrencias', [OcorrenciasController::class, 'index'])->middleware('auth');
