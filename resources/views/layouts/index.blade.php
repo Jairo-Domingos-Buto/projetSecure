@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin Dashboard</title>
       @stack('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('../css/dashboard.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    @livewireStyles
+
 
 </head>
 
@@ -30,7 +32,7 @@
             <nav class="sidebar-nav">
                 <div class="nav-section">
                     <div class="nav-title">Principal</div>
-                    <a href="#" class="nav-link active" data-section="dashboard">
+                    <a href="home" class="nav-link active" data-section="dashboard">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
@@ -151,8 +153,7 @@
 
     </div>
 
-
-   {{--  <script src="{{ asset('../js/main.js') }}"></script> --}}
+    {{-- <script src="{{ asset('../js/main.js') }}"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
     @livewireScripts
 </body>

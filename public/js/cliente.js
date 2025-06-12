@@ -1,24 +1,55 @@
-/*  document.addEventListener('DOMContentLoaded', function() {
-    const tipoSelect = document.getElementById('tipo');
-    const dataNascimentoDiv = document.getElementById('data_nascimento').closest('.col-md-4');
+document.addEventListener("DOMContentLoaded", function () {
+    // Editar Cliente
+    const editarButtons = document.querySelectorAll(
+        '[wire\\:click="editarCliente"]'
+    );
 
-    // Função para controlar a visibilidade do campo data_nascimento
-    function toggleDataNascimento() {
-        if (tipoSelect.value === 'empresa') {
-            dataNascimentoDiv.style.display = 'none';
-            document.getElementById('data_nascimento').removeAttribute('required');
-        } else {
-            dataNascimentoDiv.style.display = 'block';
-            document.getElementById('data_nascimento').setAttribute('required', 'required');
-        }
-    }
+    editarButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const clienteId = this.getAttribute("wire:click").match(/\d+/)[0];
+            fetch(`/clientes/${clienteId}/edit`)
+                .then((response) => response.json())
+                .then((cliente) => {
+                    document.getElementById("edit_nome").value = cliente.nome;
+                    document.getElementById("edit_email").value = cliente.email;
+                    document.getElementById("edit_nif").value = cliente.nif;
+                    document.getElementById("edit_telefone").value =
+                        cliente.telefone;
+                    document.getElementById("edit_endereco").value =
+                        cliente.endereco;
+                    document.getElementById("edit_tipo").value = cliente.tipo;
+                    document.getElementById("edit_ativo").value = cliente.ativo
+                        ? "1"
+                        : "0";
 
-    // Executa quando há mudança no select
-    tipoSelect.addEventListener('change', toggleDataNascimento);
+                    document.getElementById(
+                        "editarClienteForm"
+                    ).action = `/clientes/${clienteId}`;
 
-    // Executa ao carregar a página (para manter estado em caso de erro de validação)
-    toggleDataNascimento();
+                    const modal = new bootstrap.Modal(
+                        document.getElementById("editarClienteModal")
+                    );
+                    modal.show();
+                });
+        });
+    });
+
+    // Confirmar Exclusão
+    const excluirButtons = document.querySelectorAll(
+        '[wire\\:click="confirmarExclusao"]'
+    );
+
+    excluirButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const clienteId = this.getAttribute("wire:click").match(/\d+/)[0];
+            document.getElementById(
+                "excluirClienteForm"
+            ).action = `/clientes/${clienteId}`;
+
+            const modal = new bootstrap.Modal(
+                document.getElementById("confirmarExclusaoModal")
+            );
+            modal.show();
+        });
+    });
 });
-
-
- */

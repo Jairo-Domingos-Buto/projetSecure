@@ -15,7 +15,6 @@ Route::get('/home', function () {
     return view('home');
 })->middleware('auth');
 
-
-Route::get('/clientes', [ClienteController::class, 'index'])->middleware('auth')->name('clientes.index');
-Route::get('/clientes/create', [ClienteController::class, 'create'])->middleware('auth')->name('clientes.create');
-Route::post('/clientes', [ClienteController::class, 'store'])->middleware('auth')->name('clientes.store');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('clientes', ClienteController::class);
+});

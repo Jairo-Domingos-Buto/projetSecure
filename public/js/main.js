@@ -1,4 +1,4 @@
- document.addEventListener('DOMContentLoaded', function() {
+/*  document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('.content-section');
             const mainTitle = document.getElementById('main-title');
@@ -43,4 +43,4 @@
                     mainBreadcrumb.textContent = 'Home / ' + title;
                 });
             });
-        });
+        }); */
