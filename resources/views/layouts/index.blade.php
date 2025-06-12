@@ -50,7 +50,7 @@
 
                 <div class="nav-section">
                     <div class="nav-title">Operações</div>
-                    <a href="#" class="nav-link" data-section="ocorrencias" id="ocorrencias-link">
+                    <a href="{{ route('ocorrencias.index') }}" class="nav-link" data-section="ocorrencias" id="ocorrencias-link">
                         <i class="fas fa-exclamation-circle"></i>
                         <span>Cadastro de Ocorrências</span>
                     </a>
@@ -147,9 +147,11 @@
 
     </div>
 
-   
+    
+    <script src="{{ asset('../js/ocorrencias.js') }}"></script>
+<!--    
     <script src="{{ asset('../js/main.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script> -->
 </body>
 
 </html>
