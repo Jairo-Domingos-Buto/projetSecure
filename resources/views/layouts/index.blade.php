@@ -54,7 +54,7 @@
 
                 <div class="nav-section">
                     <div class="nav-title">Operações</div>
-                    <a href="#" class="nav-link" data-section="ocorrencias" id="ocorrencias-link">
+                    <a href="{{ route('ocorrencias.index') }}" class="nav-link" data-section="ocorrencias" id="ocorrencias-link">
                         <i class="fas fa-exclamation-circle"></i>
                         <span>Cadastro de Ocorrências</span>
                     </a>

@@ -181,29 +181,9 @@
 				<th>Ações</th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr>
-				<td>1</td>
-				<td>Lucio</td>
-				<td>Transação Suspeita</td>
-				<td>2024-06-10</td>
-				<td><span class="status status-aberto">Aberto</span></td>
-				<td>
-					<button class="btn btn-sm btn-info"><i class="fas fa-eye"></i></button>
-					<button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-				</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>Jairo</td>
-				<td>Saque Não Reconhecido</td>
-				<td>2024-06-08</td>
-				<td><span class="status status-fechado">Fechado</span></td>
-				<td>
-					<button class="btn btn-sm btn-info"><i class="fas fa-eye"></i></button>
-					<button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-				</td>
-			</tr>
+		<tbody id="ocorrencias-tbody">
+			<script>
+			</script>
 		</tbody>
 	</table>
 
@@ -219,36 +199,41 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-group mb-2">
-							<label for="cliente">Cliente</label>
-							<select id="cliente" name="cliente_id" class="form-control" required>
-								<option value="">Selecione o cliente</option>
-								<option value="1">Lucio</option>
-								<option value="2">Jairo</option>
-								<option value="3">Inocencio</option>
-							</select>
+							<label for="numero_conta">Número da Conta do Cliente</label>
+							<input type="text" id="numero_conta" name="numero_conta" class="form-control" placeholder="Digite o número da conta" required>
 						</div>
 						<div class="form-group mb-2">
 							<label for="tipo">Tipo de Ocorrência Bancária</label>
-							<select id="tipo" name="tipo" class="form-control" required>
+							<select id="tipo" name="tipo_ocorrencia" class="form-control" required>
 								<option value="">Selecione o tipo</option>
 								<option value="transacao_suspeita">Transação Suspeita</option>
 								<option value="problema_cartao">Problema com Cartão</option>
 								<option value="saque_nao_reconhecido">Saque Não Reconhecido</option>
 								<option value="fraude">Fraude</option>
+								<option value="roubo">Roubo</option>
 								<option value="outro">Outro</option>
 							</select>
 						</div>
 						<div class="form-group mb-2">
 							<label for="data_ocorrencia">Data da Ocorrência</label>
-							<input type="date" id="data_ocorrencia" name="data_ocorrencia" class="form-control" required>
+							<input type="datetime-local" id="data_ocorrencia" name="data_ocorrencia" class="form-control" required>
 						</div>
 						<div class="form-group mb-2">
 							<label for="local">Local (ou Agência/Canal)</label>
-							<input type="text" id="local" name="local" class="form-control" placeholder="" required>
+							<input type="text" id="local" name="local_ocorrencia" class="form-control" placeholder="" >
 						</div>
 						<div class="form-group mb-2">
 							<label for="descricao">Descrição da Ocorrência</label>
-							<textarea id="descricao" name="descricao" class="form-control" rows="3" placeholder="Descreva detalhadamente o ocorrido" required></textarea>
+							<textarea id="descricao" name="descricao" class="form-control" rows="3" placeholder="Descreva detalhadamente o ocorrido"></textarea>
+						</div>
+						<div class="form-group mb-2">
+							<label for="status">Status</label>
+							<select id="status" name="status" class="form-control">
+								<option value="aberta" selected>Aberta</option>
+								<option value="em_analise">Em Análise</option>
+								<option value="resolvida">Resolvida</option>
+								<option value="fechada">Fechada</option>
+							</select>
 						</div>
 						<div class="form-group mb-2">
 							<label for="anexos">Anexar Documentos/Comprovantes (opcional)</label>
