@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController; // Adiciona esta linha
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\OcorrenciasController;
 
 Route::get('/', [AdminController::class, 'welcome']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
