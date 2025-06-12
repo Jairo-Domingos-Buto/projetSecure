@@ -30,7 +30,7 @@
             <nav class="sidebar-nav">
                 <div class="nav-section">
                     <div class="nav-title">Principal</div>
-                    <a href="#" class="nav-link active" data-section="dashboard">
+                    <a href="#" class="nav-link" data-section="dashboard">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
