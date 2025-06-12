@@ -16,4 +16,6 @@ Route::get('/home', function () {
 })->middleware('auth');
 
 
-Route::get('/clientes', [ClienteController::class, 'index'])->middleware('auth');
+Route::get('/clientes', [ClienteController::class, 'index'])->middleware('auth')->name('clientes.index');
+Route::get('/clientes/create', [ClienteController::class, 'create'])->middleware('auth')->name('clientes.create');
+Route::post('/clientes', [ClienteController::class, 'store'])->middleware('auth')->name('clientes.store');
