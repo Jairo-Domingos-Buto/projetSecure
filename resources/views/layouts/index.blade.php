@@ -60,7 +60,7 @@
                         <i class="fas fa-users"></i>
                         <span>Cadastro de Ocorrencias</span>
                     </a>
-                    <a href="#" class="nav-link" data-section="faturas">
+                    <a href="faturas" class="nav-link">
                         <i class="fas fa-file-invoice-dollar"></i>
                         <span>Geração de Faturas</span>
                     </a>
