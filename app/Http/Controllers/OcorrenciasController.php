@@ -66,8 +66,8 @@ class OcorrenciasController extends Controller
     {
         $ocorrencia = Ocorrencia::findOrFail($id);
         $ocorrencia->delete();
-        
-     return redirect()->back()->with('success', 'Ocorrência cadastrada com sucesso!');
+
+     return redirect()->back()->with('success', 'Ocorrência exluida com sucesso!');
 
 
     }

@@ -4,158 +4,85 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
-use Laravel\Prompts\Clear;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // Exibe a lista de clientes
+    public function index(Request $request)
     {
+        if ($request->expectsJson()) {
+            return response()->json(Cliente::all());
+        }
         $clientes = Cliente::all();
-
         return view('clientes', compact('clientes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Mostra o formulário de criação
     public function create()
     {
-        //
+        return view('clientes.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Salva um novo cliente
     public function store(Request $request)
     {
-        $request->validate([
-            'nome' => 'required',
-            'nif' => [
-                'required',
-                'unique:clientes,nif',
-                'regex:/^[0-9]{9}[A-Z]{2}[0-9]{3}$/'
-            ],
-            'email' => 'required|email|unique:clientes,email',
-            'telefone' => 'required',
-            'endereco' => 'required',
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255',
+            'nif' => 'required|string|max:20|unique:clientes,nif',
+            'email' => 'nullable|email|max:100',
+            'telefone' => 'nullable|string|max:20',
+            'endereco' => 'nullable|string',
+            'data_nascimento' => 'nullable|date',
             'tipo' => 'required|in:individual,empresa',
-            /* 'data_nascimento' => ['required', 'date', 'before_or_equal:' . now()->subYears(18)->format('Y-m-d')],
-            'ativo' => 'boolean', */
-        ], [
-            'nif.regex' => 'O NIF deve conter 9 números, seguidos de 2 letras maiúsculas e 3 números',
-            /* 'data_nascimento.date' => 'A data de nascimento deve ser uma data válida',
-            'data_nascimento.min' => 'O cliente deve ter pelo menos 18 anos', */
-            'tipo.in' => 'O tipo deve ser "individual" ou "empresa"',
-            'email.unique' => 'O email já está em uso.',
-            'nif.unique' => 'O NIF já está em uso.',
-            'nome.required' => 'O nome é obrigatório.',
-            'nif.required' => 'O NIF é obrigatório.',
-            'email.required' => 'O email é obrigatório.',
-            'telefone.required' => 'O telefone é obrigatório.',
-            'endereco.required' => 'O endereço é obrigatório.',
-            'tipo.required' => 'O tipo de cliente é obrigatório.',
-            /* 'data_nascimento.required' => 'A data de nascimento é obrigatória.', */
-            'ativo.boolean' => 'O campo ativo deve ser verdadeiro ou falso.',
+            'ativo' => 'boolean',
         ]);
 
-        try {
-            $cliente = Cliente::create([
-                'nome' => $request->nome,
-                'nif' => $request->nif,
-                'email' => $request->email,
-                'telefone' => $request->telefone,
-                'endereco' => $request->endereco,
-                /* 'data_nascimento' => $request->data_nascimento, */
-                'tipo' => $request->tipo,
-                'ativo' => $request->ativo, // Por padrão, o cliente é ativo
-            ]);
+        Cliente::create($validated);
 
-            return redirect()->route('clientes.index')->with('success', 'Cliente criado com sucesso!');
-        } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'Erro ao criar cliente: ' . $e->getMessage()]);
+        return $request->expectsJson()
+            ? response()->json(['success' => true, 'message' => 'Cliente cadastrado com sucesso!'])
+            : redirect()->back()->with('success', 'Cliente cadastrado com sucesso!');
+    }
+
+    // Exibe um cliente específico
+    public function show($id)
+    {
+        $cliente = Cliente::findOrFail($id);
+        if (request()->expectsJson()) {
+            return response()->json($cliente);
         }
+        return view('clientes.show', compact('cliente'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    // Atualiza um cliente
+    public function update(Request $request, $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $cliente = Cliente::findOrFail($id);
-        return view('clientes.edit', compact('cliente'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        $cliente = Cliente::findOrFail($id);
-
-        $request->validate([
-            'nome' => 'required',
-            'nif' => [
-                'required',
-                'unique:clientes,nif,' . $cliente->id,
-                'regex:/^[0-9]{9}[A-Z]{2}[0-9]{3}$/'
-            ],
-            'email' => 'required|email|unique:clientes,email,' . $cliente->id,
-            'telefone' => 'required',
-            'endereco' => 'required',
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255',
+            'nif' => 'required|string|max:20|unique:clientes,nif,' . $id,
+            'email' => 'nullable|email|max:100',
+            'telefone' => 'nullable|string|max:20',
+            'endereco' => 'nullable|string',
+            'data_nascimento' => 'nullable|date',
             'tipo' => 'required|in:individual,empresa',
-        ], [
-            'nif.regex' => 'O NIF deve conter 9 números, seguidos de 2 letras maiúsculas e 3 números',
-            'tipo.in' => 'O tipo deve ser "individual" ou "empresa"',
-            'email.unique' => 'O email já está em uso.',
-            'nif.unique' => 'O NIF já está em uso.',
-            'nome.required' => 'O nome é obrigatório.',
-            'nif.required' => 'O NIF é obrigatório.',
-            'email.required' => 'O email é obrigatório.',
-            'telefone.required' => 'O telefone é obrigatório.',
-            'endereco.required' => 'O endereço é obrigatório.',
-            'tipo.required' => 'O tipo de cliente é obrigatório.',
+            'ativo' => 'boolean',
         ]);
 
-        try {
-            $cliente->update([
-                'nome' => $request->nome,
-                'nif' => $request->nif,
-                'email' => $request->email,
-                'telefone' => $request->telefone,
-                'endereco' => $request->endereco,
-                'tipo' => $request->tipo,
-                'ativo' => $request->ativo,
-            ]);
+        Cliente::where('id', $id)->update($validated);
 
-            return redirect()->route('clientes.index')->with('success', 'Cliente atualizado com sucesso!');
-        } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'Erro ao atualizar cliente: ' . $e->getMessage()]);
-        }
+        return $request->expectsJson()
+            ? response()->json(['success' => true, 'message' => 'Cliente atualizado com sucesso!'])
+            : redirect()->back()->with('success', 'Cliente atualizado com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    // Remove um cliente
+    public function destroy($id)
     {
         $cliente = Cliente::findOrFail($id);
+        $cliente->delete();
 
-        try {
-            $cliente->delete();
-            return redirect()->route('clientes.index')->with('success', 'Cliente excluído com sucesso!');
-        } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'Erro ao excluir cliente: ' . $e->getMessage()]);
-        }
+        return request()->expectsJson()
+            ? response()->json(['success' => true, 'message' => 'Cliente excluído com sucesso!'])
+            : redirect()->back()->with('success', 'Cliente excluído com sucesso!');
     }
-};
+}
