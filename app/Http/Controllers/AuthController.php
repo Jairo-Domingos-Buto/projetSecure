@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 
 class AuthController extends Controller
@@ -13,12 +14,9 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+        $credentials = $request->only('email', 'password');
 
         // Tentativa de login
         if (Auth::attempt($credentials)) {
@@ -31,10 +29,9 @@ class AuthController extends Controller
             }
 
             return redirect()->intended('/home');
-
         }
 
-        return back()->withErrors(['email' => 'Credenciais inválidas.']);
+        return back()->withErrors(['email' => 'Credenciais inválidas.'])->withInput($request->except('password'));
     }
 
     public function logout()
