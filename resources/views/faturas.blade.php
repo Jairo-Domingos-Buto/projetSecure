@@ -39,7 +39,7 @@
 						@endif
 					</td>
 					<td>
-						<a href="{{ route('recibo.pdf', $fatura->id) }}" target="_blank" class="btn btn-sm btn-info" title="Visualizar"><i class="fas fa-eye"></i></a>
+						<a href="" target="_blank" class="btn btn-sm btn-info" title="Visualizar"><i class="fas fa-eye"></i></a>
 						<form action="{{ route('faturas.destroy', $fatura->id) }}" method="POST" style="display:inline-block;">
 							@csrf
 							@method('DELETE')
