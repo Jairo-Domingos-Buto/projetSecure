@@ -88,6 +88,28 @@
 						<label for="data_vencimento">Data de Vencimento</label>
 						<input type="date" id="data_vencimento" name="data_vencimento" class="form-control" required>
 					</div>
+					<script>
+						document.addEventListener('DOMContentLoaded', function() {
+							const statusSelect = document.getElementById('status_fatura');
+							const vencimentoInput = document.getElementById('data_vencimento');
+							vencimentoInput.addEventListener('change', function() {
+								const hoje = new Date();
+								const vencimento = new Date(this.value);
+								hoje.setHours(0,0,0,0);
+								vencimento.setHours(0,0,0,0);
+								if (vencimento < hoje) {
+									statusSelect.value = 'vencido';
+									// Adiciona opção "Vencido" se não existir
+									if (![...statusSelect.options].some(opt => opt.value === 'vencido')) {
+										const opt = document.createElement('option');
+										opt.value = 'vencido';
+										opt.text = 'Vencido';
+										statusSelect.appendChild(opt);
+									}
+								}
+							});
+						});
+					</script>
 					<div class="form-group mb-2">
 						<label for="descricao_fatura">Descrição</label>
 						<textarea id="descricao_fatura" name="descricao" class="form-control" rows="2" placeholder="Descrição da fatura"></textarea>

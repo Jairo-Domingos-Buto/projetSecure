@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('fatura_id')->nullable()->constrained()->onDelete('set null');
             $table->decimal('valor', 12, 2);
             $table->date('data_reembolso');
+            $table->date('data_aprovacao')->nullable();
+            $table->enum('status', ['aprovado', 'negado','pendente'])->nullable();
             $table->text('observacao')->nullable();
             $table->timestamps();
         });

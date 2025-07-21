@@ -15,6 +15,8 @@ class Reembolso extends Model
         'valor',
         'data_reembolso',
         'observacao',
+        'data_aprovacao',
+        'status',
     ];
 
     public function cliente()
