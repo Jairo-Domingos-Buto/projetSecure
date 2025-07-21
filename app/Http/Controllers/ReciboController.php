@@ -2,19 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Recibo;
 use App\Models\Fatura;
-use Barryvdh\DomPDF\Facade\Pdf;
-
+use App\Models\Cliente;
+use Illuminate\Http\Request;
 
 class ReciboController extends Controller
 {
-    public function gerarReciboPDF($id)
+    public function index()
     {
-        $fatura = Fatura::with('cliente')->findOrFail($id);
-    
-        $pdf = PDF::loadView('fatura-detalhe', ['fatura' => $fatura]);
+        $faturas = Fatura::all();
+        $clientes = Cliente::all();
+        return view('recibos', compact('faturas', 'clientes'));
+    }
 
-        return $pdf->stream("fatura_{$fatura->id}.pdf");
+    public function store(Request $request)
+    {
+        $request->validate([
+            'valor' => 'required|numeric|min:0',
+            'data_emissao' => 'required|date',
+            'fatura_id' => 'nullable|exists:faturas,id',
+            'cliente_id' => 'nullable|exists:clientes,id',
+        ]);
+
+        Recibo::create($request->all());
+
+        return redirect()->route('recibos.index')->with('success', 'Recibo de adiantamento criado com sucesso!');
     }
 }
+?>

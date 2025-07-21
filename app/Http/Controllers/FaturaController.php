@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Fatura;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class FaturaController extends Controller
 {
@@ -62,15 +63,10 @@ class FaturaController extends Controller
     }
 
     // Mostrar formulário de edição
-    public function edit()
-    {
-    }
+    public function edit() {}
 
     // Atualizar fatura
-    public function update()
-    {
-
-    }
+    public function update() {}
 
     // Deletar fatura
     public function destroy($id)
@@ -79,5 +75,12 @@ class FaturaController extends Controller
         $fatura->delete();
 
         return redirect()->back()->with('success', 'Ocorrência deletada com sucesso!');
+    }
+
+    public function imprimir($id)
+    {
+        $fatura = Fatura::with('cliente')->findOrFail($id); // sem itens
+        $pdf = Pdf::loadView('pdf', compact('fatura'));
+        return $pdf->stream('fatura_' . $fatura->id . '.pdf');
     }
 }

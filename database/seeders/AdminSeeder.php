@@ -18,6 +18,12 @@ class AdminSeeder extends Seeder
             'email'=>'jairobuto03@gmail.com',
             'password'=>bcrypt('12345678')
         ]);
+        User::create([
+            'name'=>'Inocencio Bumba',
+            'role'=>'admin',
+            'email'=>'inocenciobumba2021@gmail.com',
+            'password'=>bcrypt('12345678')
+        ]);
 
     }
 }

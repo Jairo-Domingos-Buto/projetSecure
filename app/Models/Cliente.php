@@ -14,7 +14,7 @@ class Cliente extends Model
         'email',
         'telefone',
         'endereco',
-        'data_nascimento',//se for conta individual
+        'data_nascimento', //se for conta individual
         'tipo', // 'individual' ou 'empresa'
         'ativo',
     ];
@@ -31,4 +31,8 @@ class Cliente extends Model
         });
     }
 
+    public function reembolsos()
+    {
+        return $this->hasMany(Reembolso::class);
+    }
 }

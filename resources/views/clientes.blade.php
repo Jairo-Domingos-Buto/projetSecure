@@ -47,12 +47,12 @@
                     data-ativo="{{ $cliente->ativo ? 1 : 0 }}"
                     data-bs-toggle="modal"
                     data-bs-target="#novoClienteModal">
-                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-edit"></i>Editar
                 </button>
                 <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-sm btn-danger btn-excluir"><i class="fas fa-trash"></i></button>
+                    <button type="submit" class="btn btn-sm btn-danger btn-excluir"><i class="fas fa-trash"></i>Eliminar</button>
                 </form>
             </td>
         </tr>

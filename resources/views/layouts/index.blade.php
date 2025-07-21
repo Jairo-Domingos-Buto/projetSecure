@@ -133,19 +133,29 @@
                     <li class="menu-item">
                         <a href="/ocorrencias" class="menu-link">
                             <i class="menu-icon fas fa-users"></i>
-                            <div>Cadastro de Ocorrências</div>
+                            <div>Movimentos</div>
+                        </a>
+                    </li>
+                        <li class="menu-item">
+                        <a href="/faturas" class="menu-link">
+                            <i class="menu-icon fas fa-file-invoice-dollar"></i>
+                            <div>Faturação</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="/faturas" class="menu-link">
+                        <a href="/recibos" class="menu-link">
                             <i class="menu-icon fas fa-file-invoice-dollar"></i>
-                            <div>Geração de Faturas</div>
+                            <div>Recibo de Adiantamento</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/reembolsos" class="menu-link">
+                            <i class="menu-icon fas fa-file-invoice-dollar"></i>
+                            <div>Reembolsos</div>
                         </a>
                     </li>
                 </ul>
             </aside>
-
-
             <div class="menu-mobile-toggler d-xl-none rounded-1">
                 <a href="javascript:void(0);"
                     class="layout-menu-toggle menu-link text-large text-bg-secondary p-2 rounded-1">
