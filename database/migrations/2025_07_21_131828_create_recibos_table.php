@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-        Schema::create('recibos', function (Blueprint $table) {
+         Schema::create('recibos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cliente_id')->nullable()->constrained('clientes')->onDelete('set null');
-            $table->foreignId('fatura_id')->nullable()->constrained()->onDelete('set null');
             $table->decimal('valor', 12, 2);
-            $table->date('data_emissao');
+            $table->date('data_pagamento');
             $table->text('descricao')->nullable();
+            $table->enum('status', ['pendente', 'utilizado'])->default('pendente'); // se já foi usado numa fatura
             $table->timestamps();
         });
     }

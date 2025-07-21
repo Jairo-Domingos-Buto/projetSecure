@@ -10,11 +10,11 @@ class Recibo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'valor',
-        'data_emissao',
-        'descricao',
-        'fatura_id',
         'cliente_id',
+        'valor',
+        'data_pagamento',
+        'descricao',
+        'status',
     ];
 
     // 🔁 Relação com Cliente

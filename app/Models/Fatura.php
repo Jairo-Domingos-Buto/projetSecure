@@ -11,6 +11,7 @@ class Fatura extends Model
 
     protected $fillable = [
         'cliente_id',
+        'recibo_adiantamento_id',
         'valor_total',
         'data_emissao',
         'data_vencimento',
@@ -27,13 +28,8 @@ class Fatura extends Model
         return $this->hasMany(Reembolso::class);
     }
 
-    public function seguro()
+    public function Recibo()
     {
-        // return $this->belongsTo(Seguro::class);
-    }
-
-    public function pagamentos()
-    {
-        // return $this->hasMany(Pagamento::class);
+        return $this->belongsTo(Recibo::class);
     }
 }

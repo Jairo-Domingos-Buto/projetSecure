@@ -9,21 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+     public function up(): void
     {
         Schema::create('faturas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cliente_id');
+            $table->bigInteger('recibo_adiantamento_id')->unsigned()->nullable();
+
             $table->decimal('valor_total', 15, 2);
             $table->date('data_emissao');
             $table->date('data_vencimento');
             $table->string('status');
             $table->text('descricao')->nullable();
-            // $table->unsignedBigInteger('seguro_id')->nullable();
             $table->timestamps();
 
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
-            // $table->foreign('seguro_id')->references('id')->on('seguros')->onDelete('set null');
+            $table->foreign('recibo_adiantamento_id')->references('id')->on('recibos')->onDelete('set null');
+
         });
     }
 

@@ -77,6 +77,18 @@
 						</select>
 					</div>
 					<div class="form-group mb-2">
+						<label for="cliente_fatura">Cliente</label>
+					<!-- Selecionar recibos disponíveis -->
+					<select name="recibo_adiantamento_id" class="form-control">
+						<option value="">-- Sem recibo --</option>
+						@foreach($recibos as $recibo)
+							<option value="{{ $recibo->id }}">
+								Recibo #{{ $recibo->id }} - {{ $recibo->valor }} Kz ({{ $recibo->data_pagamento }})
+							</option>
+						@endforeach
+					</select>
+					</div>
+					<div class="form-group mb-2">
 						<label for="valor_fatura">Valor</label>
 						<input type="number" step="0.01" id="valor_total" name="valor_total" class="form-control" placeholder="Ex: 1200.00" required>
 					</div>

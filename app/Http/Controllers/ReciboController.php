@@ -13,21 +13,20 @@ class ReciboController extends Controller
     {
         $faturas = Fatura::all();
         $clientes = Cliente::all();
-        return view('recibos', compact('faturas', 'clientes'));
+        $recibos = Recibo::all();
+        return view('recibos', compact('faturas', 'clientes', 'recibos'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'valor' => 'required|numeric|min:0',
-            'data_emissao' => 'required|date',
-            'fatura_id' => 'nullable|exists:faturas,id',
-            'cliente_id' => 'nullable|exists:clientes,id',
+        Recibo::create([
+            'cliente_id'     => $request->cliente_id,
+            'valor'          => $request->valor,
+            'data_pagamento' => $request->data_pagamento ?? now(),
+            'descricao'      => $request->descricao,
+            'status'         => 'pendente',
         ]);
 
-        Recibo::create($request->all());
-
-        return redirect()->route('recibos.index')->with('success', 'Recibo de adiantamento criado com sucesso!');
+        return redirect()->route('recibos.index')->with('success', 'Recibo de adiantamento criado com sucesso.');
     }
 }
-?>
