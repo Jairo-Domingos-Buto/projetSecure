@@ -6,6 +6,8 @@ use App\Models\Recibo;
 use App\Models\Fatura;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class ReciboController extends Controller
 {
@@ -29,4 +31,12 @@ class ReciboController extends Controller
 
         return redirect()->route('recibos.index')->with('success', 'Recibo de adiantamento criado com sucesso.');
     }
+
+      public function imprimir($id)
+    {
+        $recibo = Fatura::with('cliente')->findOrFail($id); // sem itens
+        $pdf = Pdf::loadView('pdfrecibos', compact('recibo'));
+        return $pdf->stream('recibo' . $recibo->id . '.pdf');
+    }
+
 }

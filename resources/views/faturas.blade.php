@@ -9,7 +9,7 @@
 		Nova Fatura
 	</button>
 </div>
-<table class="table table-striped">
+<table class="table table-bordered table-striped">
 	<thead>
 		<tr>
 			<th>#</th>
@@ -77,13 +77,13 @@
 						</select>
 					</div>
 					<div class="form-group mb-2">
-						<label for="cliente_fatura">Cliente</label>
+						<label for="cliente_fatura">Recibo</label>
 					<!-- Selecionar recibos disponíveis -->
 					<select name="recibo_adiantamento_id" class="form-control">
 						<option value="">-- Sem recibo --</option>
 						@foreach($recibos as $recibo)
 							<option value="{{ $recibo->id }}">
-								Recibo #{{ $recibo->id }} - {{ $recibo->valor }} Kz ({{ $recibo->data_pagamento }})
+								Recibo #{{ $recibo->id }}
 							</option>
 						@endforeach
 					</select>

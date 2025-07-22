@@ -9,7 +9,7 @@
         Reembolso
     </button>
 </div>
-<table class="clientes-table table">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>Solicitante</th>

@@ -34,6 +34,7 @@ Route::resource('/reembolsos', ReembolsoController::class)->middleware('auth');
 
 Route::get('/faturas/imprimir/{id}', [App\Http\Controllers\FaturaController::class, 'imprimir'])->name('faturas.imprimir');
 Route::get('/reembolsos/imprimir/{id}', [App\Http\Controllers\ReembolsoController::class, 'imprimir'])->name('reembolsos.imprimir');
+Route::get('/recibos/imprimir/{id}', [App\Http\Controllers\ReciboController::class, 'imprimir'])->name('recibos.imprimir');
 
 
 
