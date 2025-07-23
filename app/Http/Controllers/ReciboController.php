@@ -34,7 +34,7 @@ class ReciboController extends Controller
 
       public function imprimir($id)
     {
-        $recibo = Fatura::with('cliente')->findOrFail($id); // sem itens
+        $recibo = Recibo::with('cliente')->findOrFail($id); // sem itens
         $pdf = Pdf::loadView('pdfrecibos', compact('recibo'));
         return $pdf->stream('recibo' . $recibo->id . '.pdf');
     }
