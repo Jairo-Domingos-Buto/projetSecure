@@ -32,11 +32,19 @@ class ReciboController extends Controller
         return redirect()->route('recibos.index')->with('success', 'Recibo de adiantamento criado com sucesso.');
     }
 
-      public function imprimir($id)
+    public function imprimir($id)
     {
         $recibo = Recibo::with('cliente')->findOrFail($id); // sem itens
         $pdf = Pdf::loadView('pdfrecibos', compact('recibo'));
         return $pdf->stream('recibo' . $recibo->id . '.pdf');
     }
 
+    public function getValor($id)
+    {
+        $recibo = Recibo::findOrFail($id);
+
+        return response()->json([
+            'valor' => $recibo->valor,
+        ]);
+    }
 }

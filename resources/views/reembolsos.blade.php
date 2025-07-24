@@ -95,11 +95,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="data_reembolso" class="form-label">Data de Solicitação</label>
-                        <input type="date" class="form-control" id="data_reembolso" name="data_reembolso" required>
+                        <input type="date" class="form-control" id="data_reembolso" name="data_reembolso" required min="{{ date('Y-m-d') }}">
                     </div>
                     <div class="mb-3">
                         <label for="data_aprovacao" class="form-label">Data de Aprovação</label>
-                        <input type="date" class="form-control" id="data_aprovacao" name="data_aprovacao" required>
+                        <input type="date" class="form-control" id="data_aprovacao" name="data_aprovacao" required min="{{ date('Y-m-d') }}">
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>

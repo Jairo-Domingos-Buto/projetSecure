@@ -7,7 +7,7 @@
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#novaOcorrenciaModal">
-        Movimentos
+        Registrar Ocorrências
     </button>
 </div>
 <table class="ocorrencias-table table">

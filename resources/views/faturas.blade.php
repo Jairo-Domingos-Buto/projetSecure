@@ -78,27 +78,28 @@
 					</div>
 					<div class="form-group mb-2">
 						<label for="cliente_fatura">Recibo</label>
-					<!-- Selecionar recibos disponíveis -->
-					<select name="recibo_adiantamento_id" class="form-control">
-						<option value="">-- Sem recibo --</option>
-						@foreach($recibos as $recibo)
+						<select name="recibo_adiantamento_id" id="recibo_adiantamento_id" class="form-control">
+							<option value="">-- Sem recibo --</option>
+							@foreach($recibos as $recibo)
 							<option value="{{ $recibo->id }}">
 								Recibo #{{ $recibo->id }}
 							</option>
-						@endforeach
-					</select>
+							@endforeach
+						</select>
 					</div>
+
 					<div class="form-group mb-2">
 						<label for="valor_fatura">Valor</label>
 						<input type="number" step="0.01" id="valor_total" name="valor_total" class="form-control" placeholder="Ex: 1200.00" required>
 					</div>
+
 					<div class="form-group mb-2">
 						<label for="data_emissao">Data de Emissão</label>
-						<input type="date" id="data_emissao" name="data_emissao" class="form-control" required>
+						<input type="date" id="data_emissao" name="data_emissao" class="form-control" required min="{{ date('Y-m-d') }}">
 					</div>
 					<div class="form-group mb-2">
 						<label for="data_vencimento">Data de Vencimento</label>
-						<input type="date" id="data_vencimento" name="data_vencimento" class="form-control" required>
+						<input type="date" id="data_vencimento" name="data_vencimento" class="form-control" required min="{{ date('Y-m-d') }}">
 					</div>
 					<script>
 						document.addEventListener('DOMContentLoaded', function() {
@@ -107,8 +108,8 @@
 							vencimentoInput.addEventListener('change', function() {
 								const hoje = new Date();
 								const vencimento = new Date(this.value);
-								hoje.setHours(0,0,0,0);
-								vencimento.setHours(0,0,0,0);
+								hoje.setHours(0, 0, 0, 0);
+								vencimento.setHours(0, 0, 0, 0);
 								if (vencimento < hoje) {
 									statusSelect.value = 'vencido';
 									// Adiciona opção "Vencido" se não existir
@@ -238,6 +239,7 @@
 			});
 		});
 	});
+	
 </script>
 @endpush
 </section>

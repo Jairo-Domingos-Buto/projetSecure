@@ -34,6 +34,9 @@
     <!-- Vendors CSS -->
 
     <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <!-- Adicione isso no <head> do seu layout -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 
     <!-- endbuild -->
 
@@ -130,27 +133,39 @@
                             <div data-i18n="Page 2">Clientes</div>
                         </a>
                     </li>
+                         <li class="menu-item">
+                        <a href="/apolices" class="menu-link">
+                            <i class="menu-icon icon-base bx bx-detail"></i>
+                            <div data-i18n="Page 2">Gestão de Apólices</div>
+                        </a>
+                    </li>
                     <li class="menu-item">
                         <a href="/ocorrencias" class="menu-link">
-                            <i class="menu-icon fas fa-users"></i>
-                            <div>Movimentos</div>
+                            <i class="menu-icon icon-base bx bx-detail"></i>
+                            <div>Gestão de Sinistros</div>
+                        </a>
+                    </li>
+                         <li class="menu-item">
+                        <a href="/pagamentos" class="menu-link">
+                            <i class="menu-icon icon-base bx bx-detail"></i>
+                            <div data-i18n="Page 2">Gestão de Pagamentos</div>
                         </a>
                     </li>
                         <li class="menu-item">
                         <a href="/faturas" class="menu-link">
-                            <i class="menu-icon fas fa-file-invoice-dollar"></i>
-                            <div>Faturação</div>
+                            <i class="menu-icon icon-base bx bx-detail"></i>
+                            <div>Gestão de Faturação</div>
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="/recibos" class="menu-link">
-                            <i class="menu-icon fas fa-file-invoice-dollar"></i>
+                            <i class="menu-icon icon-base bx bx-detail"></i>
                             <div>Recibo de Adiantamento</div>
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="/reembolsos" class="menu-link">
-                            <i class="menu-icon fas fa-file-invoice-dollar"></i>
+                            <i class="menu-icon icon-base bx bx-detail"></i>
                             <div>Reembolsos</div>
                         </a>
                     </li>
@@ -331,7 +346,6 @@
     <!-- Main JS -->
 
     <script src="../../assets/js/main.js"></script>
-
     <!-- Page JS -->
 </body>
 

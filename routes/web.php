@@ -7,6 +7,7 @@ use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\FaturaController;
 use App\Http\Controllers\OcorrenciasController;
 use App\Http\Controllers\ReembolsoController;
+use App\Http\Controllers\ApoliceController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -21,6 +22,7 @@ Route::resource('/ocorrencias', OcorrenciasController::class)->middleware('auth'
 
 // Recibos de Adiantamento
 Route::resource('/recibos', ReciboController::class)->middleware('auth');
+Route::resource('/apolices', ApoliceController::class)->middleware('auth');
 
 // Faturas
 
@@ -35,6 +37,11 @@ Route::resource('/reembolsos', ReembolsoController::class)->middleware('auth');
 Route::get('/faturas/imprimir/{id}', [App\Http\Controllers\FaturaController::class, 'imprimir'])->name('faturas.imprimir');
 Route::get('/reembolsos/imprimir/{id}', [App\Http\Controllers\ReembolsoController::class, 'imprimir'])->name('reembolsos.imprimir');
 Route::get('/recibos/imprimir/{id}', [App\Http\Controllers\ReciboController::class, 'imprimir'])->name('recibos.imprimir');
+Route::get('/apolices/imprimir/{id}', [App\Http\Controllers\ApoliceController::class, 'imprimir'])->name('apolices.imprimir');
+Route::get('/apolices/renovar/{id}', [ApoliceController::class, 'renovarManual'])->name('apolices.renovar.manual');
+Route::get('/recibos/{id}/valor', [App\Http\Controllers\ReciboController::class, 'getValor'])->name('recibos.valor');
+
+
 
 
 

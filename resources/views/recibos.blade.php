@@ -72,7 +72,7 @@
                         </div>
                         <div class="col-sm-6 mb-3">
                             <label for="data_emissao" class="form-label">Data de Pagamento</label>
-                            <input type="date" name="data_emissao" class="form-control" required>
+                            <input type="date" name="data_emissao" class="form-control" required min="{{ date('Y-m-d') }}">
                         </div>
                         <div class="col-sm-12 mb-3">
                             <label for="descricao" class="form-label">Descrição</label>

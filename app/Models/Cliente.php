@@ -35,4 +35,10 @@ class Cliente extends Model
     {
         return $this->hasMany(Reembolso::class);
     }
+
+    public function apolices()
+    {
+        return $this->hasMany(Apolice::class);
+    }
+
 }
