@@ -41,14 +41,14 @@
             <td>
                 <!-- Botão Imprimir: abre nova aba com rota de impressão -->
                 <a href="{{ route('reembolsos.imprimir', $reembolso->id) }}" target="_blank" class="btn btn-sm btn-info" title="Imprimir">
-                    <i class="fas fa-eye"></i> Imprimir
+					<i class="bi bi-printer"></i>
                 </a>
                 <!-- Botão Eliminar: envia formulário DELETE via JS -->
                 <form action="{{ route('reembolsos.destroy', $reembolso->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja eliminar este reembolso?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-danger" title="Eliminar">
-                        <i class="fas fa-trash"></i> Eliminar
+                        <i class="bi bi-trash"></i>
                     </button>
                 </form>
             </td>

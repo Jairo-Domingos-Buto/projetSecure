@@ -50,6 +50,7 @@
 
     <script src="../../assets/js/config.js"></script>
 </head>
+@include('sweetalert::alert')
 
 <body>
     <!-- Layout wrapper -->
@@ -133,40 +134,55 @@
                             <div data-i18n="Page 2">Clientes</div>
                         </a>
                     </li>
-                         <li class="menu-item">
+                    <li class="menu-item">
                         <a href="/apolices" class="menu-link">
                             <i class="menu-icon icon-base bx bx-detail"></i>
                             <div data-i18n="Page 2">Gestão de Apólices</div>
                         </a>
                     </li>
+                    @php
+                    $rotaFinanceira = ['faturas.*', 'recibos.*', 'comissoes.*', 'premios.*', 'reembolsos.*'];
+                    $ativo = request()->routeIs(...$rotaFinanceira);
+                    @endphp
+
+                    <li class="menu-item">
+                        <a href="#submenu-financeiro" class="menu-link {{ $ativo ? '' : 'collapsed' }}" data-bs-toggle="collapse" role="button" aria-expanded="{{ $ativo ? 'true' : 'false' }}" aria-controls="submenu-financeiro">
+                            <i class="menu-icon icon-base bx bx-detail"></i>
+                            <div data-i18n="Gestão Financeira">Gestão Financeira</div>
+                            <i class="bx bx-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse sub-menu list-unstyled ps-4 {{ $ativo ? 'show' : '' }}" id="submenu-financeiro">
+                            <li class="menu-item">
+                                <a href="{{ route('faturas.index') }}" class="menu-link {{ request()->routeIs('faturas.*') ? 'active' : '' }}">
+                                    Faturação
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ route('recibos.index') }}" class="menu-link {{ request()->routeIs('recibos.*') ? 'active' : '' }}">
+                                    Recibo de Adiantamento
+                                </a>
+                            </li>
+                              <li class="menu-item">
+                                <a href="{{ route('reembolsos.index') }}" class="menu-link {{ request()->routeIs('reembolsos.*') ? 'active' : '' }}">
+                                    Reembolsos
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link {{ request()->routeIs('comissoes.*') ? 'active' : '' }}">
+                                    Comissões
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link {{ request()->routeIs('premios.*') ? 'active' : '' }}">
+                                    Prêmios
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="menu-item">
                         <a href="/ocorrencias" class="menu-link">
                             <i class="menu-icon icon-base bx bx-detail"></i>
                             <div>Gestão de Sinistros</div>
-                        </a>
-                    </li>
-                         <li class="menu-item">
-                        <a href="/pagamentos" class="menu-link">
-                            <i class="menu-icon icon-base bx bx-detail"></i>
-                            <div data-i18n="Page 2">Gestão de Pagamentos</div>
-                        </a>
-                    </li>
-                        <li class="menu-item">
-                        <a href="/faturas" class="menu-link">
-                            <i class="menu-icon icon-base bx bx-detail"></i>
-                            <div>Gestão de Faturação</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/recibos" class="menu-link">
-                            <i class="menu-icon icon-base bx bx-detail"></i>
-                            <div>Recibo de Adiantamento</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/reembolsos" class="menu-link">
-                            <i class="menu-icon icon-base bx bx-detail"></i>
-                            <div>Reembolsos</div>
                         </a>
                     </li>
                 </ul>

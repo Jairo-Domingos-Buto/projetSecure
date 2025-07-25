@@ -39,15 +39,16 @@
 				@endif
 			</td>
 			<td>
-				<a href="{{ route('faturas.imprimir', $fatura->id) }}" target="_blank" class="btn btn-sm btn-info" title="Imprimir">
-					Imprimir
+				<a href="{{ route('faturas.imprimir', $fatura->id) }}" target="_blank" class="btn btn-sm btn-success" title="Imprimir">
+					<i class="bi bi-printer"></i>
+
 				</a>
 
 				<form action="{{ route('faturas.destroy', $fatura->id) }}" method="POST" style="display:inline-block;">
 					@csrf
 					@method('DELETE')
 					<button type="submit" class="btn btn-sm btn-danger" title="Eliminar" onclick="return confirm('Tem certeza que deseja eliminar esta fatura?')">
-						<i class="fas fa-trash"></i>Eliminar
+                        <i class="bi bi-trash"></i>
 					</button>
 				</form>
 			</td>
@@ -81,8 +82,8 @@
 						<select name="recibo_adiantamento_id" id="recibo_adiantamento_id" class="form-control">
 							<option value="">-- Sem recibo --</option>
 							@foreach($recibos as $recibo)
-							<option value="{{ $recibo->id }}">
-								Recibo #{{ $recibo->id }}
+							<option value="{{ $recibo->id }}" data-valor="{{ $recibo->valor }}">
+								Recibo #{{ $recibo->id }} - {{ number_format($recibo->valor, 2, ',', '.') }}
 							</option>
 							@endforeach
 						</select>
@@ -239,7 +240,16 @@
 			});
 		});
 	});
-	
+	$('#recibo_adiantamento_id').on('change', function() {
+		let selectedOption = $(this).find('option:selected');
+		let valor = selectedOption.attr('data-valor');
+
+		if (valor) {
+			$('#valor_total').val(valor).prop('readonly', true);
+		} else {
+			$('#valor_total').val('').prop('readonly', false);
+		}
+	});
 </script>
 @endpush
 </section>

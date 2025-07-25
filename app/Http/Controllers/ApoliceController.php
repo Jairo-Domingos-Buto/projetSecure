@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Apolice;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 
@@ -13,11 +14,10 @@ class ApoliceController extends Controller
 {
     public function index()
     {
-     
-    $apolices = Apolice::with('cliente')->get();
-    $clientes = Cliente::all();
-    return view('apolices', compact('apolices', 'clientes'));
 
+        $apolices = Apolice::with('cliente')->get();
+        $clientes = Cliente::all();
+        return view('apolices', compact('apolices', 'clientes'));
     }
 
     public function create()
@@ -73,26 +73,37 @@ class ApoliceController extends Controller
     {
         $apolice = Apolice::with('cliente')->findOrFail($id);
         $pdf = Pdf::loadView('pdfapolices', compact('apolice'));
-        return $pdf->stream('apolice_'.$apolice->numero.'.pdf');
+        return $pdf->stream('apolice_' . $apolice->numero . '.pdf');
     }
+
     public function renovarManual($id)
-
     {
-        
-    $original = Apolice::findOrFail($id);
+        $original = Apolice::findOrFail($id);
 
-    // Adiciona 1 ano à vigência
-    $nova = Apolice::create([
-        'cliente_id' => $original->cliente_id,
-        'renovada_de' => $original->id,
-        'numero' => $original->numero . '-R' . now()->format('YmdHis'),
-        'data_inicio' => \Carbon\Carbon::parse($original->data_fim)->addDay(),
-        'data_fim' => \Carbon\Carbon::parse($original->data_fim)->addYear(),
-        'valor' => $original->valor,
-        'tipo' => $original->tipo,
-    ]);
+        $valor = $original->valor;
+        $data_inicio = Carbon::parse($original->data_fim)->addDay(); // começa 1 dia após o fim atual
 
-    return redirect()->route('apolices.index')->with('success', 'Apólice renovada com sucesso!');
-}
+        // Determina o novo intervalo com base no valor
+        if ($valor >= 200000) {
+            $data_fim = $data_inicio->copy()->addYear(); // 1 ano
+        } elseif ($valor >= 100000) {
+            $data_fim = $data_inicio->copy()->addMonths(6); // 6 meses
+        } else {
+            // Pode ser 1 ano padrão ou o mesmo que o original (ajuste como quiser)
+            $data_fim = $data_inicio->copy()->addYear(); // padrão
+        }
 
+        // Cria nova apólice com datas ajustadas
+        $nova = Apolice::create([
+            'cliente_id' => $original->cliente_id,
+            'renovada_de' => $original->id,
+            'numero' => $original->numero . '-R' . now()->format('YmdHis'),
+            'data_inicio' => $data_inicio,
+            'data_fim' => $data_fim,
+            'valor' => $original->valor,
+            'tipo' => $original->tipo,
+        ]);
+
+        return redirect()->route('apolices.index')->with('success', 'Apólice renovada com sucesso!');
+    }
 }

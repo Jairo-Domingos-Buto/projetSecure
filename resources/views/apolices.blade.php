@@ -34,18 +34,18 @@
             <td>{{ $apolice->data_fim }}</td>
             <td>
                 <!-- Botão Editar (abre modal) -->
-                <button type="button" class="btn btn-secondary btn-sm"
+                <button type="button" class="btn btn-info btn-sm"
                     data-bs-toggle="modal"
                     data-bs-target="#modalEditarApolice{{ $apolice->id }}" title="Editar">
                     <i class="bi bi-pencil-square"></i>
                 </button>
 
                 <!-- Botão Imprimir -->
-                <a href="{{ route('apolices.imprimir', $apolice->id) }}" target="_blank" class="btn btn-secondary btn-sm" title="Imprimir">
+                <a href="{{ route('apolices.imprimir', $apolice->id) }}" target="_blank" class="btn btn-success btn-sm" title="Imprimir">
                     <i class="bi bi-printer"></i>
                 </a>
 
-                <a href="{{ route('apolices.renovar.manual', $apolice->id) }}" class="btn btn-secondary btn-sm" title="Renovar"
+                <a href="{{ route('apolices.renovar.manual', $apolice->id) }}" class="btn btn-primary btn-sm" title="Renovar"
                     onclick="return confirm('Deseja renovar esta apólice?')">
                     <i class="bi bi-arrow-repeat"></i>
                 </a>
@@ -53,7 +53,7 @@
                 <!-- Botão Excluir -->
                 <form action="{{ route('apolices.destroy', $apolice) }}" method="POST" style="display:inline-block;">
                     @csrf @method('DELETE')
-                    <button class="btn btn-secondary btn-sm" onclick="return confirm('Deseja excluir?')" title="Eliminar">
+                    <button class="btn btn-danger btn-sm" onclick="return confirm('Deseja excluir?')" title="Eliminar">
                         <i class="bi bi-trash"></i>
                     </button>
                 </form>
@@ -97,7 +97,7 @@
 
                     <div class="mb-3">
                         <label for="data_fim" class="form-label">Data Fim</label>
-                        <input type="date" name="data_fim" class="form-control" required>
+                        <input type="date" name="data_fim" class="form-control" required min="{{ date('Y-m-d') }}">
                     </div>
 
                     <div class="mb-3">

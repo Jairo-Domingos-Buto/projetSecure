@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="form-group mb-2">
                                         <label for="editar_data_ocorrencia">Data da Ocorrência</label>
-                                        <input type="datetime-local" id="editar_data_ocorrencia" name="data_ocorrencia" class="form-control" required>
+                                        <input type="datetime-local" id="editar_data_ocorrencia" name="data_ocorrencia" class="form-control" required min="{{ date('Y-m-d') }}">
                                     </div>
                                     <div class="form-group mb-2">
                                         <label for="editar_local_ocorrencia">Local (ou Agência/Canal)</label>
